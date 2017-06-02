@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>ALTA de VEHICULO</title>
+	  
+		<meta charset="UTF-8">
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/css/bootstrap.min.css"></script>
+        <script src="../bower_components/bootstrap-validator/dist/validator.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/estilos.css">
+        <script type="text/javascript" src="../js/FuncionesVehiculo.js"></script>
+
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="page-header">
+                <h1>REGISTRO</h1>      
+            </div>
+
+            <div class="CajaInicio animated bounceInRight">
+                <h1>ALTA-VEHICULO</h1>
+
+                <div id="FormReg" class="row">
+                    <input type="text" id="marca" placeholder="MARCA"  required/>
+                    <input type="text" id="color" placeholder="COLOR" required/>
+                    <input type="text" id="patente" placeholder="PATENTE" required />
+                    <select id="prioridad">
+                        <option value="1">Prioridad</option>
+                        <option value="0" selected>Sin Prioridad</option>
+                    </select>
+                    <button class="btn btn-primary btn-block" id="cargar">Cargar</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
