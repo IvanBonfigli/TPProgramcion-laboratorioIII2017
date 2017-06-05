@@ -12,16 +12,17 @@ $(document).ready(function(){
             password: password
         };
 
-        $.post("./php/ValidarUsuario.php", {datos}, function(retorno){
-            
-            if(retorno!="No-esta"){	
-			
+        DatosUsr = JSON.stringify(datos);
+
+        $.post("./php/ValidarUsuario.php/validacion", {DatosUsr}, function(retorno){
+        
+            if(retorno.resp != "No-esta"){	
+                window.location.replace("./html/ParkSystem.html");
 			}else
 			{
-				$("#informe").html("usuario o clave incorrecta");	
-				$("#formLogin").addClass("animated bounceInLeft");
+				alert("usuario o clave incorrecta");	
 			}
-        })
+        });
 
     });
 });
