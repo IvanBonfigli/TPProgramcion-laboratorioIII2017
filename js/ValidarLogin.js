@@ -16,7 +16,8 @@ $(document).ready(function(){
 
         $.post("./php/ValidarUsuario.php/validacion", {DatosUsr}, function(retorno){
         
-            if(retorno.resp != "No-esta"){	
+            if(retorno.resp != "No-esta"){
+                localStorage.setItem("Usr", usuario);	
                 window.location.replace("./html/ParkSystem.html");
 			}else
 			{

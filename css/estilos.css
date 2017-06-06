@@ -29,7 +29,7 @@ body
 
 #home
 {
-    background: url("./imgs/Home-img.PNG") no-repeat center center;
+    background: url("../img/SEC0216-parking-feature-slide5_900px.jpg") no-repeat center center;
     background-size: cover;
     height: initial;
     margin-top: 40px;
@@ -62,49 +62,66 @@ textarea{
     {
         margin-top: 100px;
         margin-bottom: 100px;
+        background-color: rgba(0, 0, 0, 0.47);
     }
 
     #HomeTitle
     {
         font-family: 'Libre Baskerville', serif;
         font-size: 60px;
-        color: white;  
+        color: rgba(255, 214, 0, 0.7);
     }
 
      #HomeSubTitle
     {
         font-family: 'Libre Baskerville', serif;
         font-size: 30px;
-        color: white; 
+        color: rgba(255, 214, 0, 0.7);
+        border-radius: 25%;
     }
 
      #hrHome
     {
-        border-width: 2px;
-        width: 30%;
+        border-top-width: 2px;
+        width: 40%;
+        border-bottom-color: black;
+        border-top-color: rgba(255, 214, 0, 0.7);
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
     }
 }
 
 @media screen and (max-width: 700px){
-    
+    #TextTitle
+    {
+        margin-top: 100px;
+        margin-bottom: 100px;
+        background-color: rgba(0, 0, 0, 0.47);
+    }
+
     #HomeTitle
     {
         font-family: 'Libre Baskerville', serif;
         font-size: 30px;
-        color: white;  
+        color: rgba(255, 214, 0, 0.7); 
     }
 
     #HomeSubTitle
     {
         font-family: 'Libre Baskerville', serif;
         font-size: 15px;
-        color: white; 
+        color: rgba(255, 214, 0, 0.7);
+        border-radius: 25%;
     }
 
      #hrHome
     {
-        border-width: 2px;
+        border-top-width: 2px;
         width: 40%;
+        border-bottom-color: black;
+        border-top-color: rgba(255, 214, 0, 0.7);
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
     }
 }
 
