@@ -14,7 +14,7 @@
         private $prioridad; //boolean 0 = sin prioridad, 1 = Discapacidad/Embarazo.
 
         //<---------constructor---------->
-        function __construct($piso, $numero, $estado, $prioridad)
+        function __construct($numero,$piso, $estado, $prioridad)
         {
             $this->piso = $piso;
             $this->numero = $numero;
@@ -76,7 +76,7 @@
 
         // <----------------Funciones de acceso a datos MYSQL---------------------->
 
-        public function TraerCocheraSegunNumero($numero)
+        public static function TraerCocheraSegunNumero($numero)
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
@@ -95,7 +95,7 @@
             return $cocheraBuscado;
         }
 
-        public function TraerTodosCochera()
+        public static function TraerTodosCochera()
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 

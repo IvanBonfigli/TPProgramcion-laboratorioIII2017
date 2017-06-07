@@ -75,7 +75,7 @@
 
         // <----------------Funciones de acceso a datos MYSQL---------------------->
 
-        public function TraerVehiculoSegunPatente($patente)
+        public static function TraerVehiculoSegunPatente($patente)
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
@@ -94,7 +94,7 @@
             return $VehiculoBuscado;
         }
 
-        public function TraerTodosLosVehiculo()
+        public static function TraerTodosLosVehiculo()
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 

@@ -82,7 +82,7 @@
 
         // <----------------Funciones de acceso a datos MYSQL---------------------->
 
-        public function TraerEmpleadoSegunId($id)
+        public static function TraerEmpleadoSegunId($id)
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
@@ -101,7 +101,7 @@
             return $EmpleadoBuscado;
         }
 
-        public function TraerTodosLosEmpleado()
+        public static function TraerTodosLosEmpleado()
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 

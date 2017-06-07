@@ -3,13 +3,15 @@
         <title>BlogApp</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet"> 
-        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="../bower_components/bootstrap-validator/dist/validator.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><script src="../bower_components/bootstrap-validator/dist/validator.min.js"></script>
         <link rel="stylesheet" href="../css/estilos.css">
         <script type="text/javascript" src="../js/FuncionesParkSystem.js"></script>
+        <script type="text/javascript" src="../js/FuncionesVehiculo.js"></script>
     </head>
     <body>
       <div class="container-fluid">
@@ -26,9 +28,9 @@
                             </div>
                             <div id="MenuBtn" class="navbar-collapse collapse navbar-ex6-collapse" aria-expanded="false" style="height: 1px;">
                                 <ul class="nav navbar-nav">
-                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Inicio</a></li>
                                 <li><a href="#postCont">Cocheras</a></li>
-                                <li><a href="#ContactContainer">Contact</a></li>
+                                <li><a href="#ContactContainer">Problema</a></li>
                                 </ul>
                                 <button id="IngresoVeh" class="btn btn-primary navbar-btn" style="margin-bottom: 0px">Inresar Vehiculo</button>
                                 <button id="LogOut" class="btn btn-danger navbar-btn" style="margin-bottom: 0px;">Logg Out</button>
@@ -39,7 +41,7 @@
                     <div id="TextTitle">
                         <h1 id="HomeTitle" class="text-center"><strong> ParkSystem </strong></h1>
                         <center><hr id="hrHome"></center>
-                        <p  class="text-center" id="HomeSubTitle">Never been that easy</p>
+                        <p  class="text-center" id="HomeSubTitle">Never been so easy</p>
                     </div>
                 </div>
                 <div id="postCont" class="col-lg-offset-1 col-md-offset-1 col-sm-12 col-md-10 col-lg-10 col-xs-12">
@@ -58,15 +60,22 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h3>Write New Post</h3>
+                                    <h3>Ingreso Vehiculo</h3>
                                 </div>
                             <div class="modal-body">
-                                   <input type="text" class="form-control" id="titleTxt" placeholder="Post Title" style="margin:5px;"required>
-                                   <input type="text" class="form-control" id="headerTxt" placeholder="Post Header" style="margin:5px;"required>
-                                   <textarea class="form-control" id="postText" placeholder="Post Text" rows="5" require></textarea>
+                                <input type="text" class="form-control" id="marca" placeholder="MARCA"  required/>
+                                <input type="text" class="form-control" id="color" placeholder="COLOR" required/>
+                                <input type="text" class="form-control" id="patente" placeholder="PATENTE" required />
+                                <select id="prioridad" class="form-control">
+                                    <option value="1">Prioridad</option>
+                                    <option value="0" selected>Sin Prioridad</option>
+                                </select>
+                                 <select id="cochera" class="form-control">
+                                    
+                                </select>
                             </div>
                                 <div class="modal-footer">
-                                    <button id="guardar" class="btn btn-primary btn-block">Post</button>
+                                    <button id="cargar" class="btn btn-primary btn-block" data-dismiss="modal">Guardar</button>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +96,7 @@
             <div id="AboutPage" class="container-fluid col-sm-12 col-md-12 col-lg-12 col-xs-12">
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12 text-center">
                         <h1>ABOUT THIS PAGE</h1>
-                        <p><strong>This application was made by Ivan Bonfigli for the LabIII exam</strong></p>
+                        <p><strong>This application was made by Ivan Bonfigli</strong></p>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6 col-xs-12 text-center">
                         <h1>AROUND THE WEB</h1>

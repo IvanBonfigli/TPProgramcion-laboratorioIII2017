@@ -98,7 +98,7 @@
 
         // <----------------Funciones de acceso a datos MYSQL---------------------->
 
-        public function TraerGestorSegunPatente($patente)
+        public static function TraerGestorSegunPatente($patente)
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
@@ -117,7 +117,7 @@
             return $gestorBuscado;
         }
 
-        public function TraerTodosGestor()
+        public static function TraerTodosGestor()
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
