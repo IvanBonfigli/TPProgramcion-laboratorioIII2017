@@ -21,11 +21,7 @@
                 {
                     if($usrObj->prioridad == $cochera->GetPrioridad() && $cochera->GetEstado() == "0")
                     {
-                        $ArrayJson= array("numero"=> $cochera->GetNumero(),
-                            "prioridad"=> $cochera->GetPrioridad(),
-                            "piso"=> $cochera->GetPiso(),
-                            "estado"=> $cochera->GetEstado() 
-                        );
+                        $ArrayJson= array("numero"=> $cochera->GetNumero(),"piso"=> $cochera->GetPiso());
                         $arrayCochera[] = $ArrayJson;
                     } 
                 }
@@ -34,8 +30,4 @@
         return $response->withJson($arrayCochera);
     });
     $app->run();
-
-    
-
-    
 ?>

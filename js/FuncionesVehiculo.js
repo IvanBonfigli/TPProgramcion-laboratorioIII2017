@@ -6,6 +6,7 @@ $(document).ready(function(){
         var marca = $("#marca").val();
         var color = $("#color").val();
         var prioridad = $("#prioridad").val();
+        var cochera = $("#cochera").val();
 
         var DatosJson =
         {
@@ -20,14 +21,35 @@ $(document).ready(function(){
         $.post("../php/AdministracionVehiculo.php/ingreso", {DatosVehiculo}, function(retorno){
                 if(retorno.codigo == 200)
                 {
-                    alert("cargado");
+                   console.log("cargado");
                 }
                 else
                 {
-                    alert("error");
+                    console.log("error");
                 }
                 
-        })
-    })
+        });
+
+        var DatosEstacionar = {
+            patente: patente,
+            numero: cochera
+        };
+
+        var DatosCochera = JSON.stringify(DatosEstacionar);
+
+        $.post("../php/ModificacionCochera.php/SetCochera", {DatosCochera}, function(retorno){
+             
+                if(retorno.codigo == 200)
+                {
+                    console.log("Bien");
+                }
+                else
+                {
+                    console.log("Error");
+                }
+        });
+
+
+    });
     
-})
+});
