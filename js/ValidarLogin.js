@@ -18,7 +18,7 @@ $(document).ready(function(){
         
             if(retorno.resp != "No-esta"){
                 localStorage.setItem("Usr", usuario);	
-                window.location.replace("./html/ParkSystem.html");
+                window.location.replace("./html/ParkSystem.php");
 			}else
 			{
 				alert("usuario o clave incorrecta");	

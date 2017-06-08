@@ -21,9 +21,9 @@
             {
                 if($arr->GetUsuario()==$usrObj->usuario && $arr->GetPassword()==$usrObj->password)
                 {	
-                    
+                    $user = array("id"=> $arr->GetId(), "usuario"=> $arr->GetUsuario(), "password" => $arr->GetPassword(), "nombre" => $arr->GetNombre(), "apellido"=>$arr->GetApellido());
+                    $_SESSION['registrado']=$user;
                     setcookie("inicio",$usrObj->usuario,  time()-36000 , '/');
-                    $_SESSION['registrado']=$usrObj->usuario;
                     $retorno["usr"]=$usrObj->usuario;
                     $retorno["resp"]="ingreso";
                     

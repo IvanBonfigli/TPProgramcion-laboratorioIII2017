@@ -16,8 +16,9 @@
          
 
         //<---------constructor---------->
-        function __construct($nombre, $apellido, $usuario, $password)
-        {
+        function __construct($id, $nombre, $apellido, $usuario, $password)
+        {   
+            $this->id = $id;
             $this->nombre = $nombre;
             $this->apellido = $apellido;
             $this->usuario = $usuario;
@@ -86,7 +87,7 @@
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
-            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT nombre AS nombre, apellido AS apellido, usuario AS usuario, password AS password FROM empleado WHERE id = :id");
+            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT id AS id, nombre AS nombre, apellido AS apellido, usuario AS usuario, password AS password FROM empleado WHERE id = :id");
             $consulta->execute(array(":id" => $id));
 
             $EmpleadoBuscado = array();
@@ -95,7 +96,7 @@
 
             foreach($EmpleadoTodos as $Empleado)
             {
-                $EmpleadoBuscado[] = new Empleado ($Empleado[0], $Empleado[1], $Empleado[2], $Empleado[3]);
+                $EmpleadoBuscado[] = new Empleado ($Empleado[0], $Empleado[1], $Empleado[2], $Empleado[3], $Empleado[4]);
             }
             
             return $EmpleadoBuscado;
@@ -105,7 +106,7 @@
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
-            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT nombre AS nombre, apellido AS apellido, usuario AS usuario, password as password FROM empleado");
+            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT id AS id, nombre AS nombre, apellido AS apellido, usuario AS usuario, password as password FROM empleado");
             
             $consulta->execute();
 
@@ -115,7 +116,7 @@
             
             foreach($EmpleadoTodos as $Empleado)
             {
-                $EmpleadoBuscado[] = new Empleado ($Empleado[0], $Empleado[1], $Empleado[2], $Empleado[3]);
+                $EmpleadoBuscado[] = new Empleado ($Empleado[0], $Empleado[1], $Empleado[2], $Empleado[3], $Empleado[4]);
             }
 
             return $EmpleadoBuscado;
@@ -136,7 +137,7 @@
            return  $consulta->execute();   
       }
 
-        public static function ModificarEmpleado($id, $nombre, $apellido, $usuario, $password)
+        public static function ModificarEmpleado($nombre, $apellido, $usuario, $password)
         {
 
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();

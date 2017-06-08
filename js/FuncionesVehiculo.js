@@ -49,6 +49,18 @@ $(document).ready(function(){
                 }
         });
 
+        $.post("../php/AdministracionGestor.php/Reg",{DatosCochera}, function(retorno){
+            
+            if (retorno.codigo == 200)
+            {
+                console.log("OK");
+            }
+            else
+            {
+                console.log(retorno);
+            }
+        });
+
         location.reload();  
     });
     

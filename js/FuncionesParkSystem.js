@@ -52,7 +52,7 @@ $(document).ready(function(){
     //<----------------Deslogeo---------------------------->
     $("#LogOut").on("click", function(){
         $.post("../php/deslogearUsuario.php", function(){
-            window.location.replace("../index.html");
+            window.location.replace("../index.php");
         });
     });
     //<--------------------------------------------------------->
@@ -85,5 +85,6 @@ $(document).ready(function(){
 
         location.reload(); 
     });
+    //<--------------------------------------------->
 
 });

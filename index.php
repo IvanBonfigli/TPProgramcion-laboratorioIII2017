@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION["registrado"]))
+    {
+        header('location: ./html/ParkSystem.php');
+    }
+?>
 <html>    
     <head>
         <title>Login</title>

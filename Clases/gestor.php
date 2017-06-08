@@ -18,7 +18,7 @@
         {
            $this->acceso = $acceso;
            $this->salida = $salida;
-           $this->usuario_acceso = $usuario;
+           $this->usuario_acceso = $usuario_acceso;
            $this->usuario_salida = $usuario_salida;
            $this->patente = $patente;
            $this->monto = $monto;
@@ -144,8 +144,8 @@
             $consulta =$objetoAccesoDato->RetornarConsulta("INSERT INTO gestor (salida, acceso, usuario_acceso, usuario_salida, patente, monto)"
                                                         . "VALUES(:salida, :acceso, :usuario_acceso, :usuario_salida, :patente, :monto)");
             
-            $consulta->bindValue(':salida', $this->salida, PDO::PARAM_DATE);
-            $consulta->bindValue(':acceso', $this->acceso, PDO::PARAM_DATE);
+            $consulta->bindValue(':salida', $this->salida, PDO::PARAM_STR);
+            $consulta->bindValue(':acceso', $this->acceso, PDO::PARAM_STR);
             $consulta->bindValue(':usuario_acceso', $this->usuario_acceso, PDO::PARAM_INT);
             $consulta->bindValue(':usuario_salida', $this->usuario_salida, PDO::PARAM_INT);
             $consulta->bindValue(':patente', $this->patente, PDO::PARAM_STR);
@@ -154,7 +154,7 @@
             return $consulta->execute();   
       }
 
-        public static function ModificarGestor($salida, $acceso, $usuario, $patente, $monto)
+        public static function ModificarGestor($salida, $acceso, $usuario_acceso, $usuario_salida, $patente, $monto)
         {
 
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
@@ -163,10 +163,10 @@
                                                             usuario_acceso = :usuario_acceso, usuario_salida = :usuario_salida, patente = :patente, monto = :monto WHERE patente = :patente");
             
             $consulta->bindValue(':patente', $patente, PDO::PARAM_STR);
-            $consulta->bindValue(':salida', $salida, PDO::PARAM_DATE);
-            $consulta->bindValue(':acceso', $acceso , PDO::PARAM_DATE);
-            $consulta->bindValue(':usuario_acceso', $this->usuario_acceso, PDO::PARAM_INT);
-            $consulta->bindValue(':usuario_salida', $this->usuario_salida, PDO::PARAM_INT);
+            $consulta->bindValue(':salida', $salida, PDO::PARAM_STR);
+            $consulta->bindValue(':acceso', $acceso , PDO::PARAM_STR);
+            $consulta->bindValue(':usuario_acceso', $usuario_acceso, PDO::PARAM_INT);
+            $consulta->bindValue(':usuario_salida', $usuario_salida, PDO::PARAM_INT);
             $consulta->bindValue(':monto', $monto, PDO::PARAM_INT);
 
             return $consulta->execute();

@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    if(!isset($_SESSION["registrado"]))
+    {
+        header("location: ../index.php");
+    }
+?>
 <html>    
     <head>
         <title>BlogApp</title>
@@ -54,7 +62,7 @@
                     </div>
                 </div>
                 <div class="modal fade" id="carga" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"> 
-                    <div align="center" style="margin-top: 250px;"><img class="img-responsive img-center" src='./imgs/ajax_loader.gif' style='width: 10%;'></div>
+                    <div align="center" style="margin-top: 250px;"><img class="img-responsive img-center" src='../img/ajax_loader.gif' style='width: 10%;'></div>
                 </div>
                 <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                         <div class="modal-dialog">
