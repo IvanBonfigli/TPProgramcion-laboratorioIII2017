@@ -1,12 +1,13 @@
 $(document).ready(function(){
-
+    
     //<-----------Muestro las cocheras ocupadas en el inicio-------------------->
     $.post("../php/MostrarCocheras.php/ShowCocheras", function(retorno){
-        var opts;
+        
+            var opts;
 
             retorno.forEach(function(element){
                 opts+= "<div id='publicacion' style='background-color: white;'class='col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
-                "<label><input type='radio' id='DC'name='select' value='"+element.numero+"'>Seleccionar</label>"+
+                "<label><input type='radio' class='DC'name='select' value='"+element.numero+"'>Seleccionar</label>"+
                 "<h2>Cochera: " + element.numero+ "</h2>" +
                  "<h2>Piso: " + element.piso + "</h2>"+
                 "<h2>Tipo: " + element.prioridad + "</h2>"+
@@ -14,7 +15,7 @@ $(document).ready(function(){
                 "</div>";
             });
 
-            $("#contentHeader").after(opts);  
+            $("#contentHeader").after(opts);
     });
     //<--------------------------------------------------------------------------->
 
@@ -25,7 +26,7 @@ $(document).ready(function(){
     });
     //<--------------------------------------->
 
-    //Traihgo al SELECT del Modal todas las cocheras disponibles segun la prioridad seleccionada.
+    //Traigo al SELECT del Modal todas las cocheras disponibles segun la prioridad seleccionada.
     $("#cochera").on("click",function(){
         
         var dato = $("#prioridad").val();
@@ -61,5 +62,28 @@ $(document).ready(function(){
     var Usr = localStorage.getItem("Usr");
     $("#UsrIcon").html(Usr);
     //<------------------------------------------------------------->
+
+    //<------------Sacara Vehiculos--------------->
+    $("#terminar").on("click",function(){
+        var cochera = $("input[type=radio][name=select]:checked").val();
+
+        var obj = {
+            numero: cochera
+        };
+
+        cocheraObj = JSON.stringify(obj);
+
+        $.post("../php/ModificacionCochera.php/SetCochera", {cocheraObj}, function(retorno){
+            if(retorno.codigo = 200)
+            {
+                console.log("Auto salio con exito");
+            }
+            else{
+                console.log("Error");
+            }
+        });
+
+        location.reload(); 
+    });
 
 });

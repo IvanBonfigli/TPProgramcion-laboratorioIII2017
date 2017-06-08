@@ -11,10 +11,12 @@
     $app->post('/SetCochera', function (Request $request, Response $response) {
                 
                 $data = $request->getParsedBody();
-                $resp["codigo"] = 400;
+                
             
                 if(isset($data["DatosCochera"]))
                 {
+                    $resp["codigo"] = 400;
+
                     $usrObj = json_decode($data["DatosCochera"]);
                     $CocheraObj = cochera::TraerCocheraSegunNumero($usrObj->numero);
                     
@@ -22,9 +24,25 @@
                     {
                         $resp["codigo"] = 200;
                     }
+
+                    return $response->withJson($resp);
                 }
 
-            return $response->withJson($resp);
+                if (isset($data["cocheraObj"]))
+                {
+                   $resp["codigo"] = 400;
+
+                    $usrObj = json_decode($data["cocheraObj"]);
+                    $CocheraObj = cochera::TraerCocheraSegunNumero($usrObj->numero);
+                    
+                    if (cochera::ModificarCochera($usrObj->numero, "0", $CocheraObj[0]->GetPrioridad(), ""))
+                    {
+                        $resp["codigo"] = 200;
+                    }
+
+                    return $response->withJson($resp);
+
+                }
         });
         $app->run();
 
