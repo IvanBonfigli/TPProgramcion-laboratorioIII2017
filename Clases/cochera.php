@@ -107,6 +107,25 @@
             return $cocheraBuscado;
         }
 
+        public static function TraerCocheraSegunEstado($estado)
+        {
+            $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+
+            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT numero AS numero, piso AS piso, estado AS estado, prioridad AS prioridad, patente AS patente FROM cochera WHERE estado = :estado");
+            $consulta->execute(array(":estado" => $estado));
+
+            $cocheraBuscado = array();
+
+            $cocheraTodos = $consulta->fetchAll();
+
+            foreach($cocheraTodos as $cochera)
+            {
+                $cocheraBuscado[] = new cochera ($cochera[0], $cochera[1], $cochera[2], $cochera[3], $cochera[4]);
+            }
+            
+            return $cocheraBuscado;
+        }
+
         public static function TraerTodosCochera()
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
