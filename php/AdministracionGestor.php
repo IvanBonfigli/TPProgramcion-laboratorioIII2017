@@ -26,8 +26,16 @@
                 {
                     $resp["codigo"] = 200;
                 }
+            }
 
-                
+            if (isset($data["cocheraObj"]))
+            {
+                $coObj = json_decode($data["cocheraObj"]);
+                $string = $coObj->patente;
+                $patente = explode("-", $string);
+                $localTime = localtime();
+                $localTime = implode("-", $localTime);
+
             }
 
        return $response->withJson($resp);

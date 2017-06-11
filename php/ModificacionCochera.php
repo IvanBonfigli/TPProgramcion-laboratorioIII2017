@@ -33,9 +33,12 @@
                    $resp["codigo"] = 400;
 
                     $usrObj = json_decode($data["cocheraObj"]);
-                    $CocheraObj = cochera::TraerCocheraSegunNumero($usrObj->numero);
+                    $string = $usrObj->patente;
+                    $numero = explode("-", $string);
+                    var_dump($numero);
+                    $CocheraObj = cochera::TraerCocheraSegunNumero($numero[0]);
                     
-                    if (cochera::ModificarCochera($usrObj->numero, "0", $CocheraObj[0]->GetPrioridad(), ""))
+                    if (cochera::ModificarCochera($numero[0], "0", $CocheraObj[0]->GetPrioridad(), ""))
                     {
                         $resp["codigo"] = 200;
                     }

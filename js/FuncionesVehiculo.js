@@ -21,11 +21,11 @@ $(document).ready(function(){
         $.post("../php/AdministracionVehiculo.php/ingreso", {DatosVehiculo}, function(retorno){
                 if(retorno.codigo == 200)
                 {
-                   console.log("cargado");
+                   console.log("Vehiculo cargado con exito");
                 }
                 else
                 {
-                    console.log("error");
+                    console.log("Error al ingresar vehiculo");
                 }
                 
         });

@@ -12,6 +12,7 @@
         private $usuario_salida;
         private $patente;
         private $monto;
+        private $id;
 
 
         function __construct($acceso, $salida, $usuario_acceso,$usuario_salida, $patente, $monto)
@@ -55,6 +56,11 @@
         public function GetMonto()
         {
             return $this->monto;
+        }
+
+        public function GetId()
+        {
+            return $this->id;
         }
         //<----------------------------->
 

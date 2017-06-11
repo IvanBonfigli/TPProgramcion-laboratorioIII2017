@@ -11,7 +11,7 @@
     $app->post('/ingreso', function (Request $request, Response $response) {
 
             $data = $request->getParsedBody();
-            $resp["codigo"] = 200;
+            $resp["codigo"] = 400;
 
             if(isset($data["DatosVehiculo"]))
             {
@@ -19,9 +19,9 @@
 
                 $VehiculoObj = new vehiculo ($VehObj->patente, $VehObj->color, $VehObj->marca, $VehObj->prioridad);
 
-                if (!$VehiculoObj->InsertarVehiculo())
+                if ($VehiculoObj->InsertarVehiculo())
                 {
-                     $resp["codigo"] = 400;
+                     $resp["codigo"] = 200;
                 }
             }
 
