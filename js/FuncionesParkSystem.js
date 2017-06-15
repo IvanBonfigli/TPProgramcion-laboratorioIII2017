@@ -7,7 +7,7 @@ $(document).ready(function(){
 
             retorno.forEach(function(element){
                 opts+= "<div id='publicacion' style='background-color: white;'class='col-xs-12 col-sm-6 col-md-4 col-lg-3'>" +
-                "<label><input type='radio' class='DC'name='select' value='"+element.numero+"-"+element.patente+"'>Seleccionar</label>"+
+                "<label><input type='radio' class='DC'name='select' value='"+element.numero+"-"+element.patente+"-"+element.idGestor+"'>Seleccionar</label>"+
                 "<h2>Cochera: " + element.numero+ "</h2>" +
                  "<h2>Piso: " + element.piso + "</h2>"+
                 "<h2>Tipo: " + element.prioridad + "</h2>"+
@@ -77,28 +77,32 @@ $(document).ready(function(){
 
         $.post("../php/EliminarVehiculo.php/eliminar", {cocheraObj}, function(retorno){
             if (retorno.codigo == 200)
-            {
-                 $.post("../php/ModificacionCochera.php/SetCochera", {cocheraObj}, function(retorno){
-                    if(retorno.codigo == 200)
+            {  
+                $.post("../php/AdministracionGestor.php/Reg",{cocheraObj},function(retorno){
+                    if (retorno.codigo == 200)
                     {
-                        $.post("../php/AdministracionGestor.php/Reg",{},function(retorno){
-                            
-                         });
-                        
+                        $.post("../php/ModificacionCochera.php/SetCochera", {cocheraObj}, function(retorno){
+                            if(retorno.codigo == 200)
+                            {
+                                console.log(retorno);
+                                location.reload();
+                            }
+                            else{
+                                console.log(retorno);
+                            }
+                        });
                     }
-                    else{
-                        console.log("Error al Modificar Cochera");
+                    else
+                    {
+                        console.log("Error al modificar gestor");
                     }
                 });
-                location.reload(); 
             }
             else
             {
                 console.log("Error al eliminar vehiculo");
             }
         });
-
-        
     });
     //<--------------------------------------------->
 

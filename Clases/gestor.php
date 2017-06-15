@@ -15,8 +15,9 @@
         private $id;
 
 
-        function __construct($acceso, $salida, $usuario_acceso,$usuario_salida, $patente, $monto)
+        function __construct($id, $acceso, $salida, $usuario_acceso,$usuario_salida, $patente, $monto)
         {
+           $this->id = $id;
            $this->acceso = $acceso;
            $this->salida = $salida;
            $this->usuario_acceso = $usuario_acceso;
@@ -108,7 +109,7 @@
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
-            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT salida AS salida, acceso AS acceso, usuario_acceso AS usuario_acceso, patente AS patente, monto AS monto, usuario_salida AS usuario_salida FROM gestor WHERE patente = :patente");
+            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT id AS id, acceso AS acceso, salida AS salida,  usuario_acceso AS usuario_acceso, patente AS patente, monto AS monto, usuario_salida AS usuario_salida FROM gestor WHERE patente = :patente");
             $consulta->execute(array(":patente" => $patente));
 
             $gestorBuscado = array();
@@ -117,7 +118,26 @@
 
             foreach($gestorTodos as $gestor)
             {
-                $gestorBuscado[] = new gestor($gestor[0], $gestor[1], $gestor[2], $gestor[3], $gestor[4]);
+                $gestorBuscado[] = new gestor($gestor[0], $gestor[1], $gestor[2], $gestor[3], $gestor[4], $gestor[5], $gestor[6]);
+            }
+            
+            return $gestorBuscado;
+        }
+
+        public static function TraerGestorSegunId($id)
+        {
+            $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+
+            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT id AS id, acceso AS acceso, salida AS salida,  usuario_acceso AS usuario_acceso, patente AS patente, monto AS monto, usuario_salida AS usuario_salida FROM gestor WHERE id = :id");
+            $consulta->execute(array(":id" => $id));
+
+            $gestorBuscado = array();
+
+            $gestorTodos = $consulta->fetchAll();
+
+            foreach($gestorTodos as $gestor)
+            {
+                $gestorBuscado[] = new gestor($gestor[0], $gestor[1], $gestor[2], $gestor[3], $gestor[4], $gestor[5], $gestor[6]);
             }
             
             return $gestorBuscado;
@@ -127,7 +147,7 @@
         {
             $ObjetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
-            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT salida AS salida, acceso AS acceso, usuario_acceso AS usuario_acceso, usuario_salida AS usuario_salida, patente as patente, monto AS monto FROM gestor");
+            $consulta = $ObjetoAccesoDato->RetornarConsulta("SELECT id AS id, acceso AS acceso, salida AS salida,  usuario_acceso AS usuario_acceso, usuario_salida AS usuario_salida, patente as patente, monto AS monto FROM gestor");
             
             $consulta->execute();
 
@@ -137,7 +157,7 @@
             
             foreach($gestorTodos as $gestor)
             {
-                $gestorBuscado[] = new gestor ($gestor[0], $gestor[1], $gestor[2], $gestor[3], $gestor[4]);
+                $gestorBuscado[] = new gestor ($gestor[0], $gestor[1], $gestor[2], $gestor[3], $gestor[4], $gestor[5], $gestor[6]);
             }
 
             return $gestorBuscado;
@@ -160,13 +180,13 @@
             return $consulta->execute();   
       }
 
-        public static function ModificarGestor($salida, $acceso, $usuario_acceso, $usuario_salida, $patente, $monto)
+        public static function ModificarGestor($id, $salida, $acceso, $usuario_acceso, $usuario_salida, $patente, $monto)
         {
 
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
             
             $consulta =$objetoAccesoDato->RetornarConsulta("UPDATE gestor SET salida = :salida, acceso = :acceso, 
-                                                            usuario_acceso = :usuario_acceso, usuario_salida = :usuario_salida, patente = :patente, monto = :monto WHERE patente = :patente");
+                                                            usuario_acceso = :usuario_acceso, usuario_salida = :usuario_salida, patente = :patente, monto = :monto WHERE id = :id");
             
             $consulta->bindValue(':patente', $patente, PDO::PARAM_STR);
             $consulta->bindValue(':salida', $salida, PDO::PARAM_STR);
@@ -174,19 +194,20 @@
             $consulta->bindValue(':usuario_acceso', $usuario_acceso, PDO::PARAM_INT);
             $consulta->bindValue(':usuario_salida', $usuario_salida, PDO::PARAM_INT);
             $consulta->bindValue(':monto', $monto, PDO::PARAM_INT);
+            $consulta->bindValue(':id', $id, PDO::PARAM_INT);
 
             return $consulta->execute();
 
         }
 
-        public static function EliminarGestor($patente)
+        public static function EliminarGestor($id)
         {
 
             $objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
             
-            $consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM gestor WHERE patente = :patente");
+            $consulta =$objetoAccesoDato->RetornarConsulta("DELETE FROM gestor WHERE id = :id");
             
-            $consulta->bindValue(':patente', $patente, PDO::PARAM_STR);
+            $consulta->bindValue(':id', $id, PDO::PARAM_STR);
 
             return $consulta->execute();
 

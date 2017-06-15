@@ -17,11 +17,11 @@
                 foreach ($CocheraObj as $cochera) {
                     if($cochera->GetPrioridad()== "0")
                     {
-                        $ArrayJson= array("numero"=> $cochera->GetNumero(),"piso"=> $cochera->GetPiso(), "prioridad"=>"Sin Prioridad", "patente"=>$cochera->GetPatente());
+                        $ArrayJson= array("numero"=> $cochera->GetNumero(),"piso"=> $cochera->GetPiso(), "prioridad"=>"Sin Prioridad", "patente"=>$cochera->GetPatente(), "idGestor"=>$cochera->GetIdGestor());
                     }
                     else
                     {
-                        $ArrayJson= array("numero"=> $cochera->GetNumero(),"piso"=> $cochera->GetPiso(), "prioridad"=>"Con Prioridad", "patente"=>$cochera->GetPatente());
+                        $ArrayJson= array("numero"=> $cochera->GetNumero(),"piso"=> $cochera->GetPiso(), "prioridad"=>"Con Prioridad", "patente"=>$cochera->GetPatente(),"idGestor"=>$cochera->GetIdGestor());
                     }
                     
                     $ArrayCochera[] = $ArrayJson;

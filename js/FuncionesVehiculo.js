@@ -30,30 +30,39 @@ $(document).ready(function(){
                 
         });
 
-        var DatosEstacionar = {
+        var DatosGestoria = {
             patente: patente,
             numero: cochera
         };
 
-        var DatosCochera = JSON.stringify(DatosEstacionar);
+        var DatosGestor = JSON.stringify(DatosGestoria);
 
-        $.post("../php/ModificacionCochera.php/SetCochera", {DatosCochera}, function(retorno){
-             
-                if(retorno.codigo == 200)
-                {
-                    console.log("Bien");
-                }
-                else
-                {
-                    console.log("Error");
-                }
-        });
-
-        $.post("../php/AdministracionGestor.php/Reg",{DatosCochera}, function(retorno){
+         $.post("../php/AdministracionGestor.php/Reg",{DatosGestor}, function(retorno){
             
-            if (retorno.codigo == 200)
+            if (retorno.codigo != "error")
             {
-                console.log("OK");
+                var idGestor = retorno.codigo;
+
+                var DatosEstacionar = {
+                    patente: patente,
+                    numero: cochera,
+                    idGestor: idGestor
+
+                };
+
+                var DatosCochera = JSON.stringify(DatosEstacionar);
+
+                $.post("../php/ModificacionCochera.php/SetCochera", {DatosCochera}, function(retorno){
+                    
+                        if(retorno.codigo == 200)
+                        {
+                            location.reload();
+                        }
+                        else
+                        {
+                            console.log("Error al Ingresar cochera");
+                        }
+                });
             }
             else
             {
@@ -61,7 +70,6 @@ $(document).ready(function(){
             }
         });
 
-        location.reload();  
     });
     
 });
